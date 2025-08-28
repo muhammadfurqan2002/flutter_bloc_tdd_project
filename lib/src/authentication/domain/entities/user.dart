@@ -16,14 +16,15 @@ class User extends Equatable{
 
 
   //  for these comparison we have equatable package
+  // it do comparison of all the properties of the Object instead of their reference
 
   // @override
   // bool operator ==(Object other) {
-  //   return identical(this, other) ||
-  //   other is User && other.runtimeType==runtimeType && other.id==id && other.name==name;
+  //   return identical(this, other) // this referentially check both object ||
+  //   other is User && other.runtimeType==runtimeType && other.id==id && other.name==name; // here we are doing value equality comparison
   // }
   //
-  // @override
+  // @override   // here we write all variables on which we doing comparison in operator method
   // int get hashCode => id.hashCode ^ name.hashCode;
 
 }
