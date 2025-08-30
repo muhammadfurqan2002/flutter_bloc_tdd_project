@@ -1,16 +1,42 @@
-# tdd_architecture
+# Flutter Authentication Project (TDD + Clean Architecture)
 
-A new Flutter project.
+This Flutter project demonstrates **Test-Driven Development (TDD)** and **Clean Architecture** principles in action.  
+Currently, it implements **user creation** and **fetching users** with proper error handling.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Create User** (`createUser`)
+    - Sends API request to create a new user
+    - Handles success and failure responses
+    - Returns `Either<Failure, void>` for clean error handling
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Get Users** (`getUsers`)
+    - Fetches a list of users from the API
+    - Handles errors with `ApiFailure`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Architecture
+
+- **Data Layer**
+    - Responsible for API calls and mapping responses
+    - Includes `AuthenticationRemoteDataSource` and `AuthenticationRepositoryImplementation`
+
+- **Domain Layer**
+    - Contains entities (`User`) and repository contracts
+    - Focused on business logic
+
+- **Presentation Layer**
+    - Not implemented yet (learning phase)
+
+---
+
+### Installation
+
+```bash
+git clone <repo-url>
+cd <project-folder>
+flutter pub get
+flutter run
