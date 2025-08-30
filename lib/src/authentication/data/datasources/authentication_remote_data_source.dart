@@ -2,7 +2,13 @@
 // here we return Model version of data
 // data source always return model version of data
 
+import 'dart:convert';
+
+import 'package:tdd_architecture/code/errors/exceptions.dart';
 import 'package:tdd_architecture/src/authentication/data/models/user_model.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../../code/utils/constants.dart';
 
 abstract class AuthenticationRemoteDataSource{
   Future<void> createUser({
@@ -11,4 +17,40 @@ abstract class AuthenticationRemoteDataSource{
     required String avatar,
   });
   Future<List<UserModel>> getUsers();
+}
+
+const kCreateUserEndpoint='/users';
+const kGetUserEndpoint='/user';
+
+
+// here we test this one Data Source
+
+
+class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemoteDataSource{
+  const AuthenticationRemoteDataSourceImplementation(this._client);
+  final http.Client _client;
+
+  @override
+  Future<void> createUser({required String createdAt, required String name, required String avatar})async {
+    // TODO: implement createUser
+    // check to make sure that it returns the right data when the response is successful
+    // code is 200 or proper response code
+    //check to make sure that it throws an custom exception when the response is unsuccessful
+    final response=await _client.post(Uri.parse('$kBaseUrl$kCreateUserEndpoint'),body:jsonEncode({
+      "createdAt": createdAt,
+      "name": name,
+      "avatar": avatar
+    }));
+    if(response.statusCode!=200 || response.statusCode!=201){
+      throw ApiException(message: response.body, statusCode: response.statusCode);
+    }
+
+  }
+
+  @override
+  Future<List<UserModel>> getUsers() async{
+    // TODO: implement getUsers
+    throw UnimplementedError();
+  }
+
 }
