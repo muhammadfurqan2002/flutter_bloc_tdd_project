@@ -1,1 +1,1 @@
-const kBaseUrl='https://6893c934c49d24bce86bc1ca.mockapi.io/test-api';
+const kBaseUrl='6893c934c49d24bce86bc1ca.mockapi.io';

@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:tdd_architecture/code/errors/exceptions.dart';
 import 'package:tdd_architecture/code/utils/constants.dart';
 import 'package:tdd_architecture/src/authentication/data/datasources/authentication_remote_data_source.dart';
+import 'package:tdd_architecture/src/authentication/data/models/user_model.dart';
 class  MockClient extends Mock implements http.Client{}
 
 void main(){
@@ -27,7 +28,7 @@ void main(){
 
       final methodCall=remoteDataSource.createUser;
       expect(methodCall(createdAt: createdAt, name: name, avatar: avatar),completes );
-      verify(()=>client.post(Uri.parse('$kBaseUrl$kCreateUserEndpoint'),body: jsonEncode({
+      verify(()=>client.post(Uri.https(kBaseUrl,kCreateUserEndpoint),body: jsonEncode({
         "createdAt": createdAt,
         "name": name,
         "avatar": avatar
@@ -50,7 +51,7 @@ void main(){
       );
 
       verify(() => client.post(
-        Uri.parse('$kBaseUrl$kCreateUserEndpoint'),
+        Uri.https(kBaseUrl,kCreateUserEndpoint),
         body: jsonEncode({
           "createdAt": createdAt,
           "name": name,
@@ -61,4 +62,26 @@ void main(){
     });
 
   });
+  group('getUsers', (){
+    const tUsers=[UserModel.empty()];
+    test('should return [List<User>] when the status code is 200', ()async{
+        when(()=>client.get(any())).thenAnswer((_)async=>http.Response(jsonEncode([tUsers.first.toMap()]),200));
+
+        final result=await remoteDataSource.getUsers();
+
+        expect(result, equals(tUsers));
+        verify(()=>client.get(Uri.https(kBaseUrl,kGetUserEndpoint))).called(1);
+        verifyNoMoreInteractions(client);
+    });
+    test('should throw [ApiException] when the status code is not 200', () async {
+      final tMessage="Server down, Server down, I repeat Server down. Mayday Mayday Mayday, We are going down.";
+      when(()=>client.get(any())).thenAnswer((_)async=>http.Response('Server down, Server down, I repeat Server down. Mayday Mayday Mayday, We are going down.', 500));
+
+      final methodCall=remoteDataSource.getUsers;
+      expect(()=>methodCall(),throwsA(ApiException(message: tMessage, statusCode: 500)));
+      verify(()=>client.get(Uri.https(kBaseUrl,kGetUserEndpoint))).called(1);
+      verifyNoMoreInteractions(client);
+    });
+  });
+
 }
