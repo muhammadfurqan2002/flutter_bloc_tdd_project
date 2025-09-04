@@ -6,6 +6,7 @@ abstract class Failure extends Equatable {
 
   const Failure({required this.message,required this.statusCode});
 
+  String get errorMessage => '$statusCode Error: $message';
 
   @override
   // TODO: implement props

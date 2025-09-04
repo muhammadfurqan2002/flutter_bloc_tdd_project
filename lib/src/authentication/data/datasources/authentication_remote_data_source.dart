@@ -21,7 +21,7 @@ abstract class AuthenticationRemoteDataSource{
 }
 
 const kCreateUserEndpoint='/test-api//users';
-const kGetUserEndpoint='/test-api/user';
+const kGetUserEndpoint='/test-api/users';
 
 
 // here we test this one Data Source
@@ -43,7 +43,11 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
         "createdAt": createdAt,
         "name": name,
         "avatar": avatar
-      }));
+      }),
+        headers: {
+          "Content-Type":"application/json"
+        }
+      );
       if(response.statusCode!=200 && response.statusCode!=201){
         throw ApiException(message: response.body, statusCode: response.statusCode);
       }

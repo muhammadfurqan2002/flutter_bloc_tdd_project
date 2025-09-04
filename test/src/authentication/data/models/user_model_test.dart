@@ -8,6 +8,7 @@ import 'package:tdd_architecture/src/authentication/domain/entities/user.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
+
 void main(){
   const tModel=UserModel.empty();
   // Act
