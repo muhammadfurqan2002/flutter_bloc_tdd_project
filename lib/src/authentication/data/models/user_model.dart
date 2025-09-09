@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:tdd_architecture/src/authentication/domain/entities/user.dart';
 
-import '../../../../code/utils/typedef.dart';
+import '../../../../core/utils/typedef.dart';
 
 class UserModel extends User{
   const UserModel({required super.id, required super.createdAt, required super.name, required super.avatar});

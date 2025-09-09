@@ -1,5 +1,5 @@
 
-import '../../../../code/utils/typedef.dart';
+import '../../../../core/utils/typedef.dart';
 
 abstract class UsecaseWithParams<Type,Params>{
   const UsecaseWithParams();

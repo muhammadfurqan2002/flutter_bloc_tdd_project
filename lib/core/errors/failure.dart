@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:tdd_architecture/code/errors/exceptions.dart';
+import 'package:tdd_architecture/core/errors/exceptions.dart';
 abstract class Failure extends Equatable {
   final dynamic message;
   final dynamic statusCode;

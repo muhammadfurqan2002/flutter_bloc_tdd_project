@@ -10,7 +10,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tdd_architecture/code/errors/failure.dart';
+import 'package:tdd_architecture/core/errors/failure.dart';
 import 'package:tdd_architecture/src/authentication/domain/repositories/authentication_repository.dart';
 import 'package:tdd_architecture/src/authentication/domain/usecases/create_user.dart';
 

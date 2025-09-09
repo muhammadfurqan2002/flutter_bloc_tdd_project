@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tdd_architecture/code/utils/typedef.dart';
+import 'package:tdd_architecture/core/utils/typedef.dart';
 import 'package:tdd_architecture/src/authentication/data/models/user_model.dart' show UserModel;
 import 'package:tdd_architecture/src/authentication/domain/entities/user.dart';
 

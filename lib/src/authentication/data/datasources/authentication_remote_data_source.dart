@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-import 'package:tdd_architecture/code/errors/exceptions.dart';
-import 'package:tdd_architecture/code/utils/typedef.dart';
+import 'package:tdd_architecture/core/errors/exceptions.dart';
+import 'package:tdd_architecture/core/utils/typedef.dart';
 import 'package:tdd_architecture/src/authentication/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../code/utils/constants.dart';
+import '../../../../core/utils/constants.dart';
 
 abstract class AuthenticationRemoteDataSource{
   Future<void> createUser({
@@ -35,7 +35,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
   Future<void> createUser({required String createdAt, required String name, required String avatar})async {
     // TODO: implement createUser
     // check to make sure that it returns the right data when the response is successful
-    // code is 200 or proper response code
+    // core is 200 or proper response core
     //check to make sure that it throws an custom exception when the response is unsuccessful
     try{
 
